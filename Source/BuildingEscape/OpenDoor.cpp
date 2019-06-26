@@ -17,28 +17,28 @@ UOpenDoor::UOpenDoor()
 }
 
 void UOpenDoor::OpenDoor()
-{
-// Store the owner pointer
-	AActor* Owner = GetOwner();
-
-
-	FString ObjectName = Owner->GetName();
-	
-	
-	// Store new rotation parameters
-	FRotator NewRotation = FRotator(0.0f, -60.0f, 0.0f);
-	Owner->SetActorRotation(NewRotation);
+{	
+	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
 	
 	// Report the rotation to the output log
+	/*
+	FString ObjectName = Owner->GetName();
 	FString ObjectRotation = Owner->GetActorRotation().ToString();
 	UE_LOG(LogTemp, Warning, TEXT("The rotation of %s is %s"), *ObjectName, *ObjectRotation);
+	*/
+	
+}
+
+void UOpenDoor::CloseDoor()
+{	
+		Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));	
 }
 
 // Called when the game starts
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
-
+	Owner = GetOwner();
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 	
 }
@@ -54,6 +54,13 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	{
 		// if ActorThatOpens is in the volume
 		OpenDoor();
+		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
 	}
+
+	if (GetWorld()->GetTimeSeconds()-LastDoorOpenTime > DoorCloseDelay)
+	{
+		CloseDoor();
+	}
+	
 }
 

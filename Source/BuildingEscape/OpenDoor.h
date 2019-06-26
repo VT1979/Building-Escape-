@@ -19,6 +19,7 @@ public:
 	UOpenDoor();
 
 	void OpenDoor();
+	void CloseDoor();
 
 protected:
 	// Called when the game starts
@@ -29,12 +30,18 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	UPROPERTY(VisibleAnywhere)
-	float OpenAngle = 90.0f;
+	UPROPERTY(EditAnywhere)
+	float OpenAngle = -90.0f;
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;	
-	
+
+	UPROPERTY(EditAnywhere)
+	float DoorCloseDelay = 0.25f;
+
+	float LastDoorOpenTime;
+
 	//UPROPERTY(EditAnywhere) switched off in subsequent lesson
-	AActor * ActorThatOpens;	//remember pawn inherits from Actor
+	AActor* Owner;
+	AActor* ActorThatOpens;	//remember pawn inherits from Actor
 };
