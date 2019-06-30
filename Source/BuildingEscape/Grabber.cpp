@@ -18,6 +18,15 @@ UGrabber::UGrabber()
 	// ...
 }
 
+void UGrabber::Grab()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Grab pressed!"));
+}
+
+void UGrabber::Release()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Released"));
+}
 
 // Called when the game starts
 void UGrabber::BeginPlay()
@@ -25,6 +34,37 @@ void UGrabber::BeginPlay()
 	Super::BeginPlay();
 
 	UE_LOG(LogTemp, Warning, TEXT("Grabber reporting for duty"));
+	
+	//Look for attached physics handle and input component
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+	PawnInput = GetOwner()->FindComponentByClass<UInputComponent>();
+
+	if (PhysicsHandle)
+	{
+		///nothing happens
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("%s missing physics handle component"), 
+			*GetOwner()->GetName())
+	}
+
+	if (PawnInput)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("%Input component found"))
+
+			//Bind the input actions
+			PawnInput->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+			PawnInput->BindAction("Grab", IE_Released, this, &UGrabber::Release);
+			//CAREFUL HERE: IN THE ABOVE LINE YOU STILL HAVE TO USE THE "Grab"
+			//NAME BECAUSE WE ARE DETECTING A RELEASE OF THE GRAB ACTION
+		}
+	else
+		{
+			UE_LOG(LogTemp, Error, TEXT("%s missing pawn input component"), 
+				*GetOwner()->GetName())
+		}
+
 	
 }
 
