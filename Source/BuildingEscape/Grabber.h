@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine.h"
+#include "Engine/World.h"
 #include "Components/ActorComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Components/InputComponent.h"
@@ -36,5 +38,14 @@ private:
 	//Ray-cast and grab what's in reach
 	void Grab();
 	void Release();
+
+	// Find attached physics handle
+	void FindPhysicsHandleComponent();
+
+	// Find (assumed) attached input component
+	void SetupInputComponent();
+
+	// Return hit for first physics body in reach
+	const FHitResult GetFirstPhysicsBodyInReach();
 	
 };
