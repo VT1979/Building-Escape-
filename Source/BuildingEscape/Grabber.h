@@ -45,6 +45,13 @@ private:
 	// Find (assumed) attached input component
 	void SetupInputComponent();
 
+	// Store player's viewpoint location and rottion
+	FVector PlayerViewPointLocation;
+	FRotator PlayerViewPointRotation;
+
+	// Calcuate the end of our line trace
+	FVector CalculateLineTraceEnd();
+
 	// Return hit for first physics body in reach
 	const FHitResult GetFirstPhysicsBodyInReach();
 	
