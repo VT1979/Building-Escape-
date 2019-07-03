@@ -43,5 +43,10 @@ private:
 
 	//UPROPERTY(EditAnywhere) switched off in subsequent lesson
 	AActor* Owner;
-	AActor* ActorThatOpens;	//remember pawn inherits from Actor
+	
+	//Returns mass of actors in kilograms
+	float GetTotalMassOfActorsOnPlate();
+
+	//Threshhold on the pressure plate to open door
+	float PressurePlateThreshhold = 11.f;
 };
