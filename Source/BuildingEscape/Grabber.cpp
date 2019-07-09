@@ -36,6 +36,7 @@ void UGrabber::Grab()
 	/// If we hit something attach a physics handle
 	if(ActorHit)
 	{
+		if (!PhysicsHandle) {return;}
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
 		ComponentToGrab,
 		NAME_None,
@@ -48,6 +49,7 @@ void UGrabber::Grab()
 void UGrabber::Release()
 {
 	///Release physics handle
+	if (!PhysicsHandle) {return;}
 	PhysicsHandle->ReleaseComponent();
 }
 void UGrabber::FindPhysicsHandleComponent()
@@ -100,6 +102,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	FVector LineTraceEnd = CalculateLineTraceEnd();
 
 	/// if the physics handle is attached 
+	if (!PhysicsHandle) {return;}
 	if (PhysicsHandle->GrabbedComponent)
 	{
 		/// then move object that we are holding
