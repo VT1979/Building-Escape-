@@ -29,7 +29,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	float Reach = 125.f;
+	float Reach = 150.f;
 
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 
