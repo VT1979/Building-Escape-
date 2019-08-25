@@ -21,6 +21,8 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
+	/*
+
 	Owner = GetOwner();
 
 	if (!Owner)
@@ -32,6 +34,8 @@ void UOpenDoor::BeginPlay()
 	{
 		UE_LOG(LogTemp, Error, TEXT("PressurePlate trigger volume not initialised"))
 	}
+
+	*/
 }
 
 
@@ -53,27 +57,5 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 }
 
 
-float UOpenDoor::GetTotalMassOfActorsOnPlate()
-{
-	float TotalMass = 0.f;
 
-	//Find all overlapping actors
-	TArray<AActor*> OverlappingActors;
-
-	if (!PressurePlate) {return 0;}
-	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
-
-	// Only execute if there are overlapping actors
-	if (OverlappingActors.Num() > 0)
-	{
-		///Add each actor's mass
-		for (AActor* Actor : OverlappingActors)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Overlapping with: %s"), *Actor->GetName())
-			TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
-		}
-		
-	}
-	return TotalMass;
-}
 

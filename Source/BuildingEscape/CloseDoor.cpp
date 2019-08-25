@@ -2,6 +2,7 @@
 
 
 #include "CloseDoor.h"
+#include "OpenDoor.h"
 
 // Sets default values for this component's properties
 UCloseDoor::UCloseDoor()
@@ -18,6 +19,7 @@ UCloseDoor::UCloseDoor()
 void UCloseDoor::BeginPlay()
 {
 	Super::BeginPlay();
+	Owner = GetOwner();
 
 	// ...
 	
@@ -29,6 +31,7 @@ void UCloseDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	//OnOpen.Broadcast();
+
 }
 
