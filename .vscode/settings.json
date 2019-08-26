@@ -1,9 +1,0 @@
-{
-	"files.exclude": {
-		"/Users/vaggelis/Documents/Unreal Projects/Section_03/BuildingEscape 4.22/.vscode": true,
-		"/Users/vaggelis/Documents/Unreal Projects/Section_03/BuildingEscape 4.22/BuildingEscape.xcworkspace": true,
-		"/Users/vaggelis/Documents/Unreal Projects/Section_03/BuildingEscape 4.22/Content": true,
-		"/Users/vaggelis/Documents/Unreal Projects/Section_03/BuildingEscape 4.22/Intermediate": true,
-		"/Users/vaggelis/Documents/Unreal Projects/Section_03/BuildingEscape 4.22/Saved": true
-	}
-}

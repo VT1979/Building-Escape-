@@ -4,6 +4,8 @@
 #include "Door.h"
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
+#include "Engine/TriggerVolume.h"
+
 #define OUT // to remind myself of outparameters in method calls
 
 // Sets default values for this component's properties
@@ -38,17 +40,17 @@ void UDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentT
 	// ...
 }
 
-float UDoor::GetTotalMassOfActorsOnPlate()
+float UDoor::GetTotalMassOfActorsOnPlate(ATriggerVolume* PressurePlate)
 {
 	float TotalMass = 0.f;
 
 	//Find all overlapping actors
 	TArray<AActor*> OverlappingActors;
 	
-	if (!ensure(PressurePlate)) { return 0; }
+	
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
-	UE_LOG(LogTemp, Warning, TEXT("%s: Pressureplate successful"), *PressurePlate->GetName())
+	//UE_LOG(LogTemp, Warning, TEXT("%s: Pressureplate successful"), *PressurePlate->GetName())
 
 	// Only execute if there are overlapping actors
 	if (OverlappingActors.Num() > 0)
@@ -63,10 +65,9 @@ float UDoor::GetTotalMassOfActorsOnPlate()
 	return TotalMass;
 }
 
-bool UDoor::IsPlayerOverlapping()
+bool UDoor::IsPlayerOverlapping(ATriggerVolume* PressurePlate)
 {
 	if (!ensure(PressurePlate)) { return false; }
-	
 	TArray<AActor*> OverlappingActors;
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 	

@@ -4,8 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Engine/TriggerVolume.h"
 #include "Door.generated.h"
+
+class ATriggerVolume;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDoorEvent);
 
@@ -27,10 +28,10 @@ protected:
 	virtual void BeginPlay() override;
 
 	// Returns mass of actors in kilograms
-	virtual float GetTotalMassOfActorsOnPlate();
+	virtual float GetTotalMassOfActorsOnPlate(ATriggerVolume* PressurePlate);
 
 	// Investigate whether Player is overlapping
-	virtual bool IsPlayerOverlapping();
+	virtual bool IsPlayerOverlapping(ATriggerVolume* PressurePlate);
 
 	UPROPERTY(BlueprintAssignable)
 		FDoorEvent OnOpen;
@@ -38,16 +39,13 @@ protected:
 	UPROPERTY(BlueprintAssignable)
 		FDoorEvent OnClose;
 	
-	UPROPERTY(EditAnywhere)
-	ATriggerVolume* PressurePlate = nullptr;
+	//UPROPERTY(EditDefaultsOnly)
+	//ATriggerVolume* PressurePlate = nullptr;
 
 	//Threshhold on the pressure plate to open door
 	UPROPERTY(EditAnywhere)
 	float PressurePlateThreshold = 11.f;
 
 	AActor* Owner = nullptr;
-
-private:
-
 		
 };

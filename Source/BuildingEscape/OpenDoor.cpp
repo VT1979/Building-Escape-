@@ -36,6 +36,11 @@ void UOpenDoor::BeginPlay()
 	}
 
 	*/
+
+	if (PressurePlate == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("At OpenDoor's BeginPlay() PressurePlate is null!"))
+	}
 }
 
 
@@ -45,7 +50,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the TriggerVolume
-	if(GetTotalMassOfActorsOnPlate() > PressurePlateThreshold) 
+	if(GetTotalMassOfActorsOnPlate(PressurePlate) > PressurePlateThreshold) 
 	{
 		OnOpen.Broadcast();
 	}

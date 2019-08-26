@@ -30,7 +30,7 @@ void UCloseDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the TriggerVolume for this door
-	if (IsPlayerOverlapping())
+	if (IsPlayerOverlapping(NegativePressurePlate))
 	{
 		OnClose.Broadcast();
 	}

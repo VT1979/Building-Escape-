@@ -33,8 +33,8 @@ protected:
 
 private:
 	
-	//UPROPERTY(EditAnywhere)
-	//ATriggerVolume* PressurePlate = nullptr;
+	UPROPERTY(EditAnywhere)
+	ATriggerVolume* PressurePlate = nullptr;
 
 	//UPROPERTY(EditAnywhere) switched off in subsequent lesson
 	//AActor* Owner = nullptr;
