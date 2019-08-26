@@ -2,7 +2,7 @@
 
 
 #include "OpenDoor.h"
-#include "GameFramework/Actor.h"
+//#include "GameFramework/Actor.h"
 
 #define OUT
 
@@ -45,7 +45,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the TriggerVolume
-	if(GetTotalMassOfActorsOnPlate() > PressurePlateThreshold) ///TODO make into parameter
+	if(GetTotalMassOfActorsOnPlate() > PressurePlateThreshold) 
 	{
 		OnOpen.Broadcast();
 	}

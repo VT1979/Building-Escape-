@@ -21,19 +21,23 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	//Returns mass of actors in kilograms
+	// Returns mass of actors in kilograms
 	virtual float GetTotalMassOfActorsOnPlate();
+
+	// Investigate whether Player is overlapping
+	virtual bool IsPlayerOverlapping();
 
 	UPROPERTY(BlueprintAssignable)
 		FDoorEvent OnOpen;
 
 	UPROPERTY(BlueprintAssignable)
 		FDoorEvent OnClose;
-
+	
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate = nullptr;
 

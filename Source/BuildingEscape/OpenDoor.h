@@ -4,12 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Door.h"
-#include "Engine/World.h"
-#include "Engine/TriggerVolume.h"
 #include "OpenDoor.generated.h"
 
 //DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDoorEvent);
 
+//Child class of UDoor to handle opening of a closed door
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UDoor
 {

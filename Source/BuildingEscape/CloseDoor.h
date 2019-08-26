@@ -3,14 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
-#include "Engine/World.h"
-#include "Engine/TriggerVolume.h"
+#include "Door.h"
 #include "CloseDoor.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class BUILDINGESCAPE_API UCloseDoor : public UActorComponent
+class BUILDINGESCAPE_API UCloseDoor : public UDoor
 {
 	GENERATED_BODY()
 
@@ -30,8 +28,8 @@ public:
 
 private:
 
-	UPROPERTY(EditAnywhere)
-		ATriggerVolume* NegativePressurePlate = nullptr;
+	//UPROPERTY(EditAnywhere)
+	//ATriggerVolume* NegativePressurePlate = nullptr;
 
 	AActor* Owner = nullptr;
 

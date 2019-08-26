@@ -2,7 +2,6 @@
 
 
 #include "CloseDoor.h"
-#include "OpenDoor.h"
 
 // Sets default values for this component's properties
 UCloseDoor::UCloseDoor()
@@ -19,7 +18,6 @@ UCloseDoor::UCloseDoor()
 void UCloseDoor::BeginPlay()
 {
 	Super::BeginPlay();
-	Owner = GetOwner();
 
 	// ...
 	
@@ -30,6 +28,17 @@ void UCloseDoor::BeginPlay()
 void UCloseDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	// Poll the TriggerVolume for this door
+	if (IsPlayerOverlapping())
+	{
+		OnClose.Broadcast();
+	}
+
+	else
+	{
+		OnOpen.Broadcast();
+	}
 
 	//OnOpen.Broadcast();
 

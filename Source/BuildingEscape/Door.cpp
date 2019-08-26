@@ -2,7 +2,9 @@
 
 
 #include "Door.h"
-#define OUT
+#include "Engine/World.h"
+#include "GameFramework/Actor.h"
+#define OUT // to remind myself of outparameters in method calls
 
 // Sets default values for this component's properties
 UDoor::UDoor()
@@ -42,9 +44,11 @@ float UDoor::GetTotalMassOfActorsOnPlate()
 
 	//Find all overlapping actors
 	TArray<AActor*> OverlappingActors;
-
-	if (!PressurePlate) { return 0; }
+	
+	if (!ensure(PressurePlate)) { return 0; }
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+
+	UE_LOG(LogTemp, Warning, TEXT("%s: Pressureplate successful"), *PressurePlate->GetName())
 
 	// Only execute if there are overlapping actors
 	if (OverlappingActors.Num() > 0)
@@ -57,4 +61,23 @@ float UDoor::GetTotalMassOfActorsOnPlate()
 
 	}
 	return TotalMass;
+}
+
+bool UDoor::IsPlayerOverlapping()
+{
+	if (!ensure(PressurePlate)) { return false; }
+	
+	TArray<AActor*> OverlappingActors;
+	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+	
+	if (OverlappingActors.Num() != 0){
+		for (AActor* Actor : OverlappingActors)
+		{
+			if (Actor == GetWorld()->GetFirstPlayerController()->GetOwner()) {
+				return true;
+			}
+		}
+	
+	}
+	return false;
 }
