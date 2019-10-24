@@ -28,8 +28,8 @@ public:
 
 private:
 
-	UPROPERTY(EditAnywhere)
-	ATriggerVolume* NegativePressurePlate = nullptr;
+	UPROPERTY(EditAnywhere, Category = "Pressure Plate")
+	ATriggerVolume* NegativePressurePlate;
 
 	AActor* Owner = nullptr;
 
